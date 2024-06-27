@@ -2,8 +2,28 @@
 
 import 'package:flutter/material.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({super.key});
+
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
+  late TabController tabController;
+
+  @override
+  void initState() {
+    tabController = TabController(length: 2, vsync: this);
+
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    tabController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -119,6 +139,28 @@ class Home extends StatelessWidget {
           )
         ],
       ),
+    );
+  }
+
+  Widget _categoriesList() {
+    return TabBar(
+      unselectedLabelColor: Colors.black,
+      labelStyle: const TextStyle(fontSize: 25, fontWeight: FontWeight.w400),
+      labelColor: Colors.white,
+      indicatorWeight: 2,
+      indicatorColor: const Color.fromRGBO(249, 180, 3, 1),
+      indicator: const BoxDecoration(
+          color: Color.fromRGBO(249, 180, 3, 1),
+          borderRadius: BorderRadius.all(Radius.circular(25))),
+      controller: tabController,
+      tabs: const [
+        Tab(
+          text: 'waiting',
+        ),
+        Tab(
+          text: 'done',
+        ),
+      ],
     );
   }
 }
