@@ -1,6 +1,10 @@
 // ignore_for_file: unused_element
 
+import 'package:eco/data.dart';
+import 'package:eco/widgets/brand_button.dart';
 import 'package:flutter/material.dart';
+
+import '../models/brand.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -148,6 +152,20 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
       height: MediaQuery.sizeOf(context).height * 0.05,
       margin: EdgeInsets.symmetric(
         vertical: MediaQuery.sizeOf(context).height * 0.01,
+      ),
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: brands.length,
+        itemBuilder: (context, index) {
+          Brand brand = brands[index];
+          return Container(
+            margin: const EdgeInsets.symmetric(vertical: 8.0),
+            child: BrandButton(
+              brand: brand,
+              isSelected: index == 0,
+            ),
+          );
+        },
       ),
     );
   }
