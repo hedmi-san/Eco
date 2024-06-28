@@ -47,6 +47,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
             _topBar(context),
             _title(),
             _searchField(context),
+            _categoriesList(context),
           ],
         ),
       ),
@@ -142,25 +143,12 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     );
   }
 
-  Widget _categoriesList() {
-    return TabBar(
-      unselectedLabelColor: Colors.black,
-      labelStyle: const TextStyle(fontSize: 25, fontWeight: FontWeight.w400),
-      labelColor: Colors.white,
-      indicatorWeight: 2,
-      indicatorColor: const Color.fromRGBO(249, 180, 3, 1),
-      indicator: const BoxDecoration(
-          color: Color.fromRGBO(249, 180, 3, 1),
-          borderRadius: BorderRadius.all(Radius.circular(25))),
-      controller: tabController,
-      tabs: const [
-        Tab(
-          text: 'waiting',
-        ),
-        Tab(
-          text: 'done',
-        ),
-      ],
+  Widget _categoriesList(BuildContext context) {
+    return Container(
+      height: MediaQuery.sizeOf(context).height * 0.05,
+      margin: EdgeInsets.symmetric(
+        vertical: MediaQuery.sizeOf(context).height * 0.01,
+      ),
     );
   }
 }
